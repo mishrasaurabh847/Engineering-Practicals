@@ -1,0 +1,147 @@
+#include<stdio.h>
+#include<conio.h>
+int D[100][100],v,p[100][100];
+void Iteratn(int k)
+{
+ int i,j;
+ printf(" D%d =\n\n",k);
+ for(i=1;i<=v;i++)
+  {
+     for(j=1;j<=v;j++)
+      {
+		if(D[i][j]==1000)
+			printf(" INFI ");
+		else
+			printf(" %d ",D[i][j]);
+      }
+     printf("\n");
+  }
+}
+int min(int a,int b)
+{
+ if (a>b)
+	return b;
+ else
+	return a;
+}
+void main()
+{
+ int i,j,k;
+ clrscr();
+ printf("Enter the number of vertices\n");
+ scanf("%d",&v);
+ for(i=1;i<=v;i++)
+  {
+	for(j=1;j<=v;j++)
+		{
+			if(i!=j)
+			{
+				printf("if there is edge between %d and %d Enter the weight else enter 1000\n",i,j);
+				scanf("%d",&D[i][j]);
+			}
+			p[i][j]=-1;
+		}
+  }
+  printf(" D0=\n\n");
+  for(i=1;i<=v;i++)
+   {
+		for(j=1;j<=v;j++)
+			{
+				if(D[i][j]==1000)
+					printf(" INFI ");
+				else
+					printf(" %d ",D[i][j]);
+			}
+		printf("\n");
+   }
+
+ for(k=1;k<=v;k++)
+  {
+		for(i=1;i<=v;i++)
+			{
+				for(j=1;j<=v;j++)
+					{
+						if(i==j)
+							D[i][j]=0;
+						else
+						{
+							D[i][j]=min(D[i][j],D[i][k]+D[k][j]);
+							if(D[i][j]==D[i][k]+D[k][j])
+								p[i][j]=k;
+						}
+					}
+			}
+		printf("\n");
+		Iteratn(k);
+  }
+ printf("Thank You For Using ALL PAIR SHORTEST PATH(FLOYD WARSHALL) By SE CMPN A 64");
+ getch();
+}
+/*
+output
+
+F:\z>gcc ALP64.c -o ALP64
+F:\z>.\ALP64
+Enter the number of vertices
+4
+if there is edge between 1 and 2 Enter the weight else enter 1000
+1000
+if there is edge between 1 and 3 Enter the weight else enter 1000
+3
+if there is edge between 1 and 4 Enter the weight else enter 1000
+1000
+if there is edge between 2 and 1 Enter the weight else enter 1000
+2
+if there is edge between 2 and 3 Enter the weight else enter 1000
+1000
+if there is edge between 2 and 4 Enter the weight else enter 1000
+1000
+if there is edge between 3 and 1 Enter the weight else enter 1000
+1000
+if there is edge between 3 and 2 Enter the weight else enter 1000
+7
+if there is edge between 3 and 4 Enter the weight else enter 1000
+1
+if there is edge between 4 and 1 Enter the weight else enter 1000
+6
+if there is edge between 4 and 2 Enter the weight else enter 1000
+1000
+if there is edge between 4 and 3 Enter the weight else enter 1000
+1000
+ D0=
+
+ 0  INFI  3  INFI
+ 2  0  INFI  INFI
+ INFI  7  0  1
+ 6  INFI  INFI  0
+
+ D1 =
+
+ 0  INFI  3  INFI
+ 2  0  5  INFI
+ INFI  7  0  1
+ 6  INFI  9  0
+
+ D2 =
+
+ 0  INFI  3  INFI
+ 2  0  5  INFI
+ 9  7  0  1
+ 6  INFI  9  0
+
+ D3 =
+
+ 0  10  3  4
+ 2  0  5  6
+ 9  7  0  1
+ 6  16  9  0
+
+ D4 =
+
+ 0  10  3  4
+ 2  0  5  6
+ 7  7  0  1
+ 6  16  9  0
+Thank You For Using ALL PAIR SHORTEST PATH(FLOYD WARSHALL) By SE CMPN A 64
+F:\z>
+*/
