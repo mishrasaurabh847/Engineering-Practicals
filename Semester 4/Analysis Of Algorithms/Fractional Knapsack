@@ -1,0 +1,100 @@
+#include<stdio.h>
+#include<conio.h>
+void main()
+{
+ int i,j,n,ti,ind[100];
+ float p[100],w[100],temp1,c=0;
+ float pw[100],temp,W,s,cost=0;
+ clrscr();
+ printf("Enter the number of items\n");
+ scanf("%d",&n);
+ for(i=0;i<n;i++)
+ {
+  printf("Enter profit\n");
+  scanf("%f",&p[i]);
+  printf("Enter Weight\n");
+  scanf("%f",&w[i]);
+ }
+ printf("enter the Weight of bag\n");
+ scanf("%f",&W);
+ for(i=0;i<n;i++)
+ {
+  pw[i]=p[i]/w[i];
+  ind[i]=i+1;
+ }
+ for(i=0;i<n-1;i++)
+  for(j=0;j<n-1;j++)
+   if(pw[j]<pw[j+1])
+   {
+    temp=pw[j];
+    pw[j]=pw[j+1];
+    pw[j+1]=temp;
+    ti=ind[j];
+    ind[j]=ind[j+1];
+    ind[j+1]=ti;
+    temp1=p[j];
+    p[j]=p[j+1];
+    p[j+1]=temp1;
+    temp1=w[j];
+    w[j]=w[j+1];
+    w[j+1]=temp1;
+   }
+   for(i=0;i<n;i++)
+    printf("\n p=%f w= %f p/w= %f\n",p[i],w[i],pw[i]);
+ for(i=0;i<n;i++)
+ {
+  if(w[i]<=W)
+  {
+   c=c+1;
+   printf("%d item with profit %f and weight %f selected\n",ind[i],p[i],w[i]);
+   W=W-w[i];
+   cost=cost+p[i];
+  }
+  else
+  if(w[i]>W)
+   break;
+ }
+ if(W!=0&&i!=n)
+ {
+  c=c+W/w[i];
+  s=W*pw[i];
+  cost=cost+s;
+  printf("%d item with profit %f and weight %f and %f part is selected\n",ind[i],p[i],w[i],W/w[i]);
+  W=0;
+ }
+ printf("%f elements selected\n",c);
+ printf("%f total profit\n",cost);
+ getch();
+}
+/*
+OUTPUT
+F:\z>gcc FKNAP64.c -o FKNAP64
+F:\z>.\FKNAP64
+Enter the number of items
+3
+Enter profit
+25
+Enter Weight
+15
+Enter profit
+24
+Enter Weight
+18
+Enter profit
+15
+Enter Weight
+20
+enter the Weight of bag
+20
+
+ p=25.000000 w= 15.000000 p/w= 1.666667
+
+ p=24.000000 w= 18.000000 p/w= 1.333333
+
+ p=15.000000 w= 20.000000 p/w= 0.750000
+1 item with profit 25.000000 and weight 15.000000 selected
+2 item with profit 24.000000 and weight 18.000000 and 0.277778 part is selected
+1.277778 elements selected
+31.666668 total profit
+F:\z>
+*/
