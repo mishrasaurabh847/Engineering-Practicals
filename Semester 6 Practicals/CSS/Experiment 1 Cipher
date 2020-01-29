@@ -1,0 +1,41 @@
+Substitution Cipher (AutoKey) and Transpose cipher (Rail Fence Cipher)
+inp=input()
+inp=inp.replace(' ','')
+print("Plain Text: ", inp)
+s=[]
+for i in inp:
+  s.append(i)
+print(s)
+alpha=['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+l=[]
+key=12
+for i in s:
+  a=alpha.index(i)
+  a=(a+key)%26
+  key=alpha.index(i)
+  l.append(alpha[a])
+print(l)
+r1=[]
+r2=[]
+for i in range(len(l)):
+  if(i%2==0):
+    r1.append(l[i])
+  else:
+    r2.append(l[i])
+j=0
+k=0
+print("Encrpyted Autokey Cipher Text: ", end='')
+for i in range(len(l)):
+  if(i%2==0):
+    print(r1[j],end='')
+    j+=1
+  else:
+    print(r2[k],end='')
+    k+=1
+print()
+op=''
+for i in r1:
+  op+=str(i)
+for i in r2:
+  op+=str(i)
+print("Encrpyted Transpose Cipher Text: ", op)
