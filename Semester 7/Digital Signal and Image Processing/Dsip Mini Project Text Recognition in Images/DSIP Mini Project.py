@@ -8,13 +8,11 @@ text = pytesseract.image_to_string(im, lang = 'eng')
 
 print(text)
 
-'''
-OUTPUT:
-= RESTART: C:\Users\Saurabh R. Mishra\AppData\Local\Programs\Python\Python38\DSIP Mini Project.py
-MISHRA SAURABH RAJESH
-BE COMP A 64
-
-DSIP MINI PROJECT
-
-Text Recognition in Images
-'''
+##OUTPUT:
+##= RESTART: C:\Users\Saurabh R. Mishra\AppData\Local\Programs\Python\Python38\DSIP Mini Project.py
+##MISHRA SAURABH RAJESH
+##BE COMP A 64
+##
+##DSIP MINI PROJECT
+##
+##Text Recognition in Images
