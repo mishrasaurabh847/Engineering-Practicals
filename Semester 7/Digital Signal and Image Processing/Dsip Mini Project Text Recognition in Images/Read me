@@ -1,0 +1,9 @@
+Execute the following commands:
+pip install opencv-python
+pip install pytesseract
+pip install tesseract
+pip install tesseract-ocr
+then On Windows
+download binary from https://github.com/UB-Mannheim/tesseract/wiki.
+then add pytesseract.pytesseract.tesseract_cmd = 'C:\path where installed\tesseract.exe' to your script.
+place the image "sample.jpeg" in then same directory as your project.
